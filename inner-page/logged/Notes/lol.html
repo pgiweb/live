@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Love You</title>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background-color: #000;
+        overflow: hidden;
+    }
+    .message {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 48px;
+    }
+    .heart,
+    .emoji {
+        position: absolute;
+        font-size: 24px;
+        color: red;
+        animation: fall 5s linear infinite;
+    }
+    .emoji {
+        color: yellow;
+        font-size: 36px;
+    }
+    @keyframes fall {
+        0% {
+            transform: translateY(-100%);
+        }
+        100% {
+            transform: translateY(100vh);
+        }
+    }
+</style>
+</head>
+<body>
+<div class="message">I Love You</div>
+
+<audio id="sound" autoplay>
+  <source src="beep.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const numberOfHearts = 500; // Number of hearts
+    const numberOfEmojis = 500; // Number of emojis
+
+    // Function to create hearts
+    function createHearts() {
+        const fragment = document.createDocumentFragment();
+        for (let i = 0; i < numberOfHearts; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '&#10084;';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            fragment.appendChild(heart);
+        }
+        document.body.appendChild(fragment);
+    }
+
+    // Function to create emojis
+    function createEmojis() {
+        const fragment = document.createDocumentFragment();
+        for (let i = 0; i < numberOfEmojis; i++) {
+            const emoji = document.createElement('div');
+            emoji.classList.add('emoji');
+            emoji.innerHTML = '😂';
+            emoji.style.left = Math.random() * window.innerWidth + 'px';
+            emoji.style.animationDelay = Math.random() * 5 + 's';
+            fragment.appendChild(emoji);
+        }
+        document.body.appendChild(fragment);
+    }
+
+    createHearts();
+    createEmojis();
+});
+</script>
+</body>
+</html>
+
+ <!-- <script>
+let i = 0;
+const intervalId = setInterval(() => {
+    // Create an anchor element
+    const link = document.createElement('a');
+    link.href = 'url_of_your_image.jpg'; // Replace 'url_of_your_image.jpg' with the actual URL of the image you want to download
+    link.download = 'image' + i + '.jpg'; // Filename for the downloaded image, appending current index
+    
+    // Append the anchor element to the document body
+    document.body.appendChild(link);
+    
+    // Trigger a click event on the anchor element to initiate the download
+    link.click();
+    
+    // Clean up by removing the anchor element from the document body
+    document.body.removeChild(link);
+    
+    console.log("Image downloaded");
+    
+    // Increment i or modify condition as necessary
+    i++;
+
+    // Condition to stop the interval
+    if (i > 1) {
+        clearInterval(intervalId);
+        console.log("Download stopped");
+    }
+}, 1000); // Adjust the interval duration as needed (e.g., 1000 milliseconds = 1 second)
+
+    </script> -->
